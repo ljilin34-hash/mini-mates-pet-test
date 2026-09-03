@@ -109,58 +109,71 @@ const questions = [
   }
 ];
 
+// 12 道答案先计算出社交、探索、陪伴三个维度；三位 key 依次表示这三个维度的倾向。
+// 现有问卷共有 2³ = 8 种宠格组合，因此从 16 种人类 MBTI 类型中选取 8 个相近的趣味标签。
+const petMbtiByProfile = {
+  "111": "ENFP",
+  "110": "ESTP",
+  "101": "ESFJ",
+  "100": "ENFJ",
+  "011": "INFP",
+  "010": "ISTP",
+  "001": "ISFJ",
+  "000": "INTJ"
+};
+
 const types = {
   "111": {
-    number: "01", mbti: "ENFP", name: "元气小太阳", color: "#f6c321",
+    number: "01", name: "元气小太阳", color: "#f6c321",
     tagline: "“有朋友的地方，就是我的主场。”",
     description: "热情、好奇，又把你放在心尖上。TA 喜欢参与家里的每一件事，也很乐意把快乐分享给新朋友，是天生的气氛担当。",
     tags: ["热场达人", "好奇宝宝", "贴贴专家"],
     tip: "丰富的互动和小型社交会让 TA 很开心；兴奋时也要留出安静休息的空间。"
   },
   "110": {
-    number: "02", mbti: "ENTP", name: "自由冒险家", color: "#f6c321",
+    number: "02", name: "自由冒险家", color: "#f6c321",
     tagline: "“世界这么大，我想自己闻一闻。”",
     description: "大胆友好、行动力十足，同时保留自己的节奏。TA 爱新鲜体验，也享受独立做决定，是不需要时刻被照顾的探索家。",
     tags: ["行动派", "自带主见", "社交轻松"],
     tip: "给 TA 安全的探索机会和可以自主选择的空间，比持续干预更能建立信任。"
   },
   "101": {
-    number: "03", mbti: "ESFJ", name: "温柔跟屁虫", color: "#f6c321",
+    number: "03", name: "温柔跟屁虫", color: "#f6c321",
     tagline: "“外面的世界慢一点，有你就安心。”",
     description: "对人友善，但面对变化会谨慎确认。只要熟悉的人在身边，TA 就能逐渐放松，是温柔、体贴又让人很有陪伴感的小伙伴。",
     tags: ["陪伴感满分", "温柔派", "熟了很热情"],
     tip: "进入新环境时让 TA 跟着熟悉的人慢慢适应，不要用突然接触催促 TA。"
   },
   "100": {
-    number: "04", mbti: "ENFJ", name: "淡定外交官", color: "#f6c321",
+    number: "04", name: "淡定外交官", color: "#f6c321",
     tagline: "“我很友好，也很懂得保持分寸。”",
     description: "TA 待人随和、情绪稳定，却不会轻易被热闹牵着走。面对新变化会先判断，再用自己的方式融入，是很有边界感的社交高手。",
     tags: ["边界清晰", "情绪稳定", "礼貌社交"],
     tip: "尊重 TA 的独处时间；邀请而不是强迫互动，TA 反而更愿意主动靠近。"
   },
   "011": {
-    number: "05", mbti: "INFP", name: "反差侦察员", color: "#f6c321",
+    number: "05", name: "反差侦察员", color: "#f6c321",
     tagline: "“别看我慢热，好奇心可一点不少。”",
     description: "初见时安静谨慎，熟悉后却会展现旺盛的好奇心。TA 特别依赖信任关系，有你做后盾，就敢一点点打开自己的世界。",
     tags: ["外冷内热", "细节雷达", "认定就黏"],
     tip: "用熟悉的气味、奖励和陪伴支持探索；允许 TA 自己决定接近陌生人的速度。"
   },
   "010": {
-    number: "06", mbti: "INTP", name: "神秘探险家", color: "#f6c321",
+    number: "06", name: "神秘探险家", color: "#f6c321",
     tagline: "“我不是害羞，只是在执行秘密任务。”",
     description: "TA 不急着和谁打成一片，却对环境充满兴趣。独立、专注、观察细致，常常在没有人注意时完成自己的探索计划。",
     tags: ["独立调查", "神秘气质", "安静好奇"],
     tip: "准备藏食、嗅闻或益智游戏，让 TA 在低干扰的环境中自由探索。"
   },
   "001": {
-    number: "07", mbti: "ISFJ", name: "安心守护者", color: "#f6c321",
+    number: "07", name: "安心守护者", color: "#f6c321",
     tagline: "“我不需要很多朋友，有你就够了。”",
     description: "慢热、谨慎、重感情。TA 不轻易把信任交出去，但一旦认定你，就会用安静而坚定的方式陪伴，是家里最可靠的温柔守护者。",
     tags: ["专属陪伴", "安全感优先", "重感情"],
     tip: "稳定的作息和可预测的互动会给 TA 安全感；变化发生时尽量保留熟悉物品。"
   },
   "000": {
-    number: "08", mbti: "INTJ", name: "冷静观察家", color: "#f6c321",
+    number: "08", name: "冷静观察家", color: "#f6c321",
     tagline: "“先让我看看，再决定要不要参与。”",
     description: "TA 喜欢安静、稳定和清楚的边界。不是冷淡，只是更习惯先观察、后行动；当环境足够安全，TA 会以低调的方式表达信任。",
     tags: ["稳定派", "观察细致", "独处达人"],
@@ -174,6 +187,7 @@ const state = {
   index: 0,
   answers: Array(questions.length).fill(null),
   result: null,
+  mbti: "",
   scores: null
 };
 
@@ -226,6 +240,7 @@ function calculateResult() {
   const key = `${scores.social >= 0 ? 1 : 0}${scores.explore >= 0 ? 1 : 0}${scores.bond >= 0 ? 1 : 0}`;
   state.scores = scores;
   state.result = types[key];
+  state.mbti = petMbtiByProfile[key];
 }
 
 function scoreToPercent(score) {
@@ -250,7 +265,7 @@ function renderResult() {
   $("#result-serial").textContent = serial;
   $("#result-animal").src = state.species === "dog" ? "./assets/mini-mates-dog.png" : "./assets/mini-mates-cat.png";
   $("#result-code").textContent = `MINI TYPE ${result.number}`;
-  $("#result-mbti").textContent = `宠物 MBTI · ${result.mbti}`;
+  $("#result-mbti").textContent = `宠物 MBTI · ${state.mbti}`;
   $("#result-type").textContent = result.name;
   $("#result-tagline").textContent = result.tagline;
   $("#result-description").textContent = result.description;
@@ -345,7 +360,7 @@ async function downloadResultCard() {
   ctx.fillText(`MINI TYPE ${result.number}`, 125, 265);
   ctx.fillStyle = "#ffffff";
   ctx.font = '700 36px "PingFang SC", Arial';
-  ctx.fillText(`宠物 MBTI · ${result.mbti}`, 125, 320);
+  ctx.fillText(`宠物 MBTI · ${state.mbti}`, 125, 320);
   ctx.fillStyle = "#ffffff";
   ctx.font = '700 74px "PingFang SC", Arial';
   ctx.fillText(state.petName, 125, 405);
@@ -418,7 +433,7 @@ async function downloadResultCard() {
 }
 
 async function copyShareText() {
-  const text = `我家${state.petName}的 Mini Mates 宠格是「${state.result.name} · ${state.result.mbti}」\n${state.result.tagline}\n你家毛孩子会是哪一种？`;
+  const text = `我家${state.petName}的 Mini Mates 宠格是「${state.result.name} · ${state.mbti}」\n${state.result.tagline}\n你家毛孩子会是哪一种？`;
   try {
     if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error("clipboard unavailable");
     await navigator.clipboard.writeText(text);
