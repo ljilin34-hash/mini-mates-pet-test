@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff9ef" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mini Mates宠物性格测试" />
+    <meta property="og:description" content="12道题，发现TA的专属宠格。" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="description"
+      content="Mini Mates社交圈宠物性格测试，用 12 道日常行为题发现毛孩子的独特性格。"
+    />
+    <title>Mini Mates社交圈｜宠物性格测试</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-shape background-shape--one" aria-hidden="true"></div>
+    <div class="background-shape background-shape--two" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Mini Mates社交圈首页">
+        <img class="brand__logo" src="./assets/mini-mates-logo.jpg" alt="Mini Mates" />
+        <span class="brand__subline">社交圈 · PET SOCIAL CLUB</span>
+      </a>
+    </header>
+
+    <main id="app" class="app-shell">
+      <section id="welcome-screen" class="screen screen--active hero" aria-labelledby="welcome-title">
+        <div class="hero__copy">
+          <div class="eyebrow"><span>✦</span> Mini Mates 宠格研究所</div>
+          <h1 id="welcome-title">你真的了解<br /><em>家里的这位小朋友</em>吗？</h1>
+          <p class="hero__intro">
+            12 道日常观察题，解锁 TA 的专属宠格。<br />没有标准答案，每一种性格都值得被喜欢。
+          </p>
+
+          <form id="pet-form" class="pet-form">
+            <label class="field-label" for="pet-name">先告诉我们，TA 叫什么？</label>
+            <input
+              id="pet-name"
+              name="pet-name"
+              type="text"
+              maxlength="12"
+              placeholder="输入宠物名字"
+              autocomplete="off"
+              required
+            />
+
+            <fieldset class="species-picker">
+              <legend>TA 是一位……</legend>
+              <label class="species-option">
+                <input type="radio" name="species" value="dog" checked />
+                <span class="species-option__face" aria-hidden="true"><img src="./assets/mini-mates-dog.png" alt="" /></span>
+                <span><strong>小狗</strong><small>汪星居民</small></span>
+              </label>
+              <label class="species-option">
+                <input type="radio" name="species" value="cat" />
+                <span class="species-option__face" aria-hidden="true"><img src="./assets/mini-mates-cat.png" alt="" /></span>
+                <span><strong>小猫</strong><small>喵星居民</small></span>
+              </label>
+            </fieldset>
+
+            <button class="primary-button" type="submit">
+              开始测试 <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <div class="test-meta" aria-label="测试信息">
+            <span><strong>12</strong> 道题</span>
+            <span><strong>2</strong> 分钟</span>
+            <span><strong>8</strong> 种宠格</span>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="sticker sticker--top">今天也要<br /><strong>认识新朋友</strong></div>
+          <div class="pet-portrait">
+            <div class="pet-portrait__halo"></div>
+            <img class="pet-portrait__dog" src="./assets/mini-mates-dog.png" alt="" />
+            <img class="pet-portrait__cat" src="./assets/mini-mates-cat.png" alt="" />
+            <span class="spark spark--one">✦</span>
+            <span class="spark spark--two">✦</span>
+            <span class="spark spark--three">●</span>
+          </div>
+          <div class="sticker sticker--bottom"><span>MINI</span> 个头小小<br />个性大大</div>
+        </div>
+      </section>
+
+      <section id="quiz-screen" class="screen quiz" aria-labelledby="question-title">
+        <div class="quiz__topline">
+          <button id="back-button" class="text-button" type="button" aria-label="返回上一题">← 上一题</button>
+          <span id="question-count">01 / 12</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <article class="question-card">
+          <div id="question-icon" class="question-card__icon" aria-hidden="true">01</div>
+          <p id="question-context" class="question-card__context">社交观察</p>
+          <h2 id="question-title">题目将在这里显示</h2>
+          <div id="answer-list" class="answer-list" role="group" aria-label="请选择最符合的选项"></div>
+        </article>
+        <p class="quiz__hint">凭第一感觉选择就好，没有正确答案。</p>
+        <div class="quiz-navigation">
+          <button id="previous-question-button" class="previous-question-button" type="button">
+            <span aria-hidden="true">←</span>
+            <span id="previous-question-label">返回修改宠物信息</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="result-screen" class="screen result" aria-labelledby="result-heading">
+        <div class="confetti" aria-hidden="true">
+          <span>✦</span><span>●</span><span>✦</span><span>●</span><span>✦</span>
+        </div>
+        <div class="result__intro">
+          <p class="eyebrow"><span>✦</span> 宠格档案已解锁</p>
+          <h1 id="result-heading"><span id="result-pet-name">TA</span> 是一位</h1>
+        </div>
+
+        <article id="result-card" class="result-card">
+          <div class="result-card__header">
+            <span id="result-serial" class="result-card__serial">MM-0000</span>
+            <span class="result-card__brand">Mini Mates社交圈</span>
+          </div>
+          <img id="result-animal" class="result-card__animal" src="./assets/mini-mates-dog.png" alt="" />
+          <p id="result-code" class="result-card__code">TYPE 01</p>
+          <h2 id="result-type">元气小太阳</h2>
+          <p id="result-tagline" class="result-card__tagline">“有朋友的地方，就是我的主场。”</p>
+
+          <div id="trait-list" class="trait-list"></div>
+
+          <p id="result-description" class="result-card__description"></p>
+          <div id="result-tags" class="result-tags"></div>
+        </article>
+
+        <aside class="mate-tip">
+          <span class="mate-tip__icon" aria-hidden="true">TIP</span>
+          <div>
+            <strong>和 TA 相处的小提示</strong>
+            <p id="result-tip"></p>
+          </div>
+        </aside>
+
+        <div class="result-actions">
+          <button id="download-button" class="primary-button" type="button">保存结果卡</button>
+          <button id="copy-button" class="secondary-button" type="button">复制分享文案</button>
+          <button id="restart-button" class="text-button" type="button">再测一次</button>
+        </div>
+        <p class="result-disclaimer">本测试用于趣味了解宠物行为倾向，不构成医疗或专业行为诊断。</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Mini Mates社交圈</span>
+      <span>让每一种小个性，都找到同频伙伴。</span>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="wechat-preview" class="wechat-preview" role="dialog" aria-modal="true" aria-labelledby="wechat-preview-title" hidden>
+      <button id="close-preview-button" class="wechat-preview__close" type="button" aria-label="关闭结果卡预览">×</button>
+      <div class="wechat-preview__panel">
+        <p id="wechat-preview-title">长按图片保存到手机</p>
+        <img id="wechat-preview-image" alt="宠物性格测试结果卡" />
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
